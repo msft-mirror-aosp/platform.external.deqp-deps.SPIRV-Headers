@@ -24,14 +24,19 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 
+// Use the SPIR-V 1.1 core instruction set, but with 1.0 versions
+// of the GLSL and OpenCL extended instruction sets.
 #include <spirv/1.0/GLSL.std.450.h>
 #include <spirv/1.0/OpenCL.std.h>
-#include <spirv/1.0/spirv.hpp>
+#include <spirv/1.1/spirv.hpp>
 
 namespace {
 
 const GLSLstd450 kSin = GLSLstd450Sin;
 const OpenCLLIB::Entrypoints kNative_cos = OpenCLLIB::Native_cos;
 const spv::Op kNop = spv::OpNop;
+
+// This instruction is new in SPIR-V 1.1.
+const spv::Op kNamedBarrierInit = spv::OpNamedBarrierInitialize;
 
 }  // anonymous namespace
