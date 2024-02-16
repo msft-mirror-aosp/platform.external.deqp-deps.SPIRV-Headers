@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2024 The Khronos Group Inc.
+// Copyright (c) 2016-2024 The Khronos Group Inc.
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and/or associated documentation files (the
@@ -23,31 +23,15 @@
 // CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
-// 
 
-#ifndef SPIRV_UNIFIED1_AMD_shader_ballot_H_
-#define SPIRV_UNIFIED1_AMD_shader_ballot_H_
+#include <spirv/unified1/GLSL.std.450.h>
+#include <spirv/unified1/OpenCL.std.h>
+#include <spirv/unified1/spirv.hpp>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace {
 
-enum {
-    AMD_shader_ballotRevision = 5,
-    AMD_shader_ballotRevision_BitWidthPadding = 0x7fffffff
-};
+const GLSLstd450 kSin = GLSLstd450Sin;
+const OpenCLLIB::Entrypoints kNative_cos = OpenCLLIB::Native_cos;
+const spv::Op kNop = spv::OpNop;
 
-enum AMD_shader_ballotInstructions {
-    AMD_shader_ballotSwizzleInvocationsAMD = 1,
-    AMD_shader_ballotSwizzleInvocationsMaskedAMD = 2,
-    AMD_shader_ballotWriteInvocationAMD = 3,
-    AMD_shader_ballotMbcntAMD = 4,
-    AMD_shader_ballotInstructionsMax = 0x7fffffff
-};
-
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif // SPIRV_UNIFIED1_AMD_shader_ballot_H_
+}  // anonymous namespace
