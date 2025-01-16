@@ -24,7 +24,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 cmake_minimum_required(VERSION 3.14)
-project(SPIRV-Headers LANGUAGES CXX VERSION 1.5.5)
+project(SPIRV-Headers LANGUAGES C CXX VERSION 1.5.5)
 
 if (CMAKE_VERSION VERSION_LESS "3.21")
     # https://cmake.org/cmake/help/latest/variable/PROJECT_IS_TOP_LEVEL.html
@@ -35,12 +35,14 @@ add_library(SPIRV-Headers INTERFACE)
 add_library(SPIRV-Headers::SPIRV-Headers ALIAS SPIRV-Headers)
 target_include_directories(SPIRV-Headers INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
-if (PROJECT_IS_TOP_LEVEL)
-    option(BUILD_TESTS "Build the tests")
-    if (BUILD_TESTS)
-        add_subdirectory(tests)
-    endif()
+option(SPIRV_HEADERS_ENABLE_TESTS "Test SPIRV-Headers" ${PROJECT_IS_TOP_LEVEL})
+option(SPIRV_HEADERS_ENABLE_INSTALL "Install SPIRV-Headers" ${PROJECT_IS_TOP_LEVEL})
 
+if(SPIRV_HEADERS_ENABLE_TESTS)
+    add_subdirectory(tests)
+endif()
+
+if(SPIRV_HEADERS_ENABLE_INSTALL)
     include(GNUInstallDirs)
     include(CMakePackageConfigHelpers)
 
